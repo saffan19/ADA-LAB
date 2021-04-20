@@ -10,22 +10,25 @@ void delay(int milli_seconds)
 }
 int rLinearSearch(int a[],int start,int end,int key)
 {
-    delay(10);
+    delay(1);
     if(start>end)return -1;
     if(a[start]==key)return start;
     //if(a[end]==key)return end;
     return rLinearSearch(a,start+1,end,key);
     
 }
+
 int rBinarySearch(int a[],int start,int end,int key)
 {
     delay(10);
-    if(start>end)return -1;
-    int mid=(start+end)/2;
-    if(a[mid]==key)return mid;
-    if(key>a[mid])return rBinarySearch(a,mid,end,key);
-    else
-    return rBinarySearch(a,start,mid,key);
+    if(start<=end)
+    {
+        int mid=start+(end-start)/2;
+        if(a[mid]==key)return mid;
+        if(key<a[mid])return rBinarySearch(a,start,mid-1,key);
+        return rBinarySearch(a,mid+1,end,key);
+    }
+    return -1;
 }
 void sort(int a[],int n)
 {
